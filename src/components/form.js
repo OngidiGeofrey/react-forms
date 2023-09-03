@@ -1,6 +1,11 @@
 import React from 'react'
-import bg_image from './assets/download.jpg'
-export default function form() {
+import bg_image from './assets/download.jpg';
+import { useForm } from "react-hook-form";
+export default function Form() {
+    const {register,handleSubmit}=useForm();
+    const onSubmit=(d)=> {
+      console.log(JSON.stringify(d));
+    }
   return (
     
     <section>
@@ -8,11 +13,11 @@ export default function form() {
   <div className='col-1'>
     <h2>Sign In</h2>
     <span>Register and Enjoy the service</span>
-    <form id='form' className='fle flex-col'>
-    <input type='text' placeholder='username' /> <br/><br/>
-    <input type='password' placeholder='Password' /><br/><br/>
-    <input type='password' placeholder='confirm Password'/><br/><br/>
-    <input type='phone' placeholder='Phone Number'/><br/><br/>
+    <form id='form'   onSubmit={handleSubmit(onSubmit)} className='fle flex-col'>
+    <input type='text' {...register("username")} placeholder='username' /> <br/><br/>
+    <input type='password' {...register("password")} placeholder='Password' /><br/><br/>
+    <input type='password' {...register("confirm_password")} placeholder='confirm Password'/><br/><br/>
+    <input type='phone' {...register("phone_number")} placeholder='Phone Number'/><br/><br/>
     <button className='btn'>Sign In</button>
    
     </form>
